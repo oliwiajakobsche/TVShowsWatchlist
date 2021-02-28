@@ -1,0 +1,11 @@
+.navbar-brand {
+    font-family: 'Black Ops One', cursive;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.glyphicon {
+    margin-right: 5px;
+}

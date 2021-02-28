@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#y!i8u==ozeojlwbe*!dhkrwb71r+pw1_dx4y=swdp@8=m3r!l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True #if you set to false, static files will stop working in current form
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1']
 
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tvshows.apps.TvshowsConfig',
+    'rest_framework',
+    'restapi.apps.RestapiConfig',
 ]
 
 MIDDLEWARE = [
