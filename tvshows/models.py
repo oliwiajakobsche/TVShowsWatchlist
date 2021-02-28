@@ -9,7 +9,7 @@ class TvShow(models.Model):
     productionCountry = models.CharField(max_length=40)
 
     def __str__(self):
-        return "[" + str(self.id) + "] " + self.title + " (" + self.productionCountry + ") - " + self.genre + "-" + self.description[0:100]
+        return "[" + str(self.id) + "] " + self.title + " (" + self.productionCountry + ") - " + self.genre + "\n" + self.description[0:100] + "(...)"
 
 
 class Season(models.Model):

@@ -1,0 +1,11 @@
+<h1> List of Tv Shows: <h1>
+
+{% if tvShowsList %}
+    <ul>
+        {% for tvShow in tvShowsList %}
+            <li><a href="{{ tvShow.id }}">{{ tvShow.title }}</a></li>
+        {% endfor %}
+    <ul>
+{% else %}
+    <p>Sorry, it seems that show does not have any seasons or episodes.</p>
+{% endif %}

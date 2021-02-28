@@ -1,0 +1,39 @@
+<div>    
+    <h1> {{ tvShow.title }} </h1>
+    <img src = "{{ tvShow.poster }}">
+    <p>{{ tvShow.genre }}</p>
+    <p>{{ tvShow.productionCountry }}</p>
+    <p>{{ tvShow.description }}</p>
+</div>
+
+<div>
+    {% if tvShow %}
+            {% for season in tvShow.season_set.all %}               
+                    <h4>Season {{ season.number }}</h4>
+                     {% if season.episode_set.all %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nr</th>
+                                <th>Title</th>
+                                <th>Duration</th>
+                                <th>Released</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for episode in season.episode_set.all %}
+                            <tr>
+                                <td>{{ season.number }}</td>
+                                <td>{{ episode.title }}</td>
+                                <td>{{ episode.duration }}</td>
+                                <td>{{ episode.releaseDate }}</td>
+                            </tr>
+                            {% endfor%}                    
+                        </tbody>
+                    <table>
+                    {% endif %}
+            {% endfor %}
+    {% else %}
+        <p>Sorry, it seems that our database with tv shows is empty.</p>
+    {% endif %}
+</div>
