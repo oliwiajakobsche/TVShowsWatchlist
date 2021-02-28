@@ -3,7 +3,7 @@
 {% if tvShowsList %}
     <ul>
         {% for tvShow in tvShowsList %}
-            <li><a href="{{ tvShow.id }}">{{ tvShow.title }}</a></li>
+            <li><a href="{% url 'tvshows:details' tvShow.id %}">{{ tvShow.title }}</a></li>
         {% endfor %}
     <ul>
 {% else %}

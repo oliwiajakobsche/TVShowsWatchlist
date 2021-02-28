@@ -1,24 +1,15 @@
-from django.http import HttpResponse, Http404, HttpResponseNotFound
-from django.shortcuts import get_object_or_404
-from django.template import loader
+from django.shortcuts import get_object_or_404, render
 from .models import TvShow
 
 def index(request):
     tvShowsList = TvShow.objects.all()
-    context = {
-        'tvShowsList': tvShowsList
-    }
-    template = loader.get_template('tvshows/index.html')
-
-    return HttpResponse(template.render(context,request))
+    context = { 'tvShowsList': tvShowsList }
+    
+    return render(request, 'tvshows/index.html', context)
 
 
 def details(request, tvShowId):
-    tvShow = get_object_or_404(TvShow, id=tvShowId)
-    
-    context = {
-        'tvShow': tvShow
-    }
-    template = loader.get_template('tvshows/details.html')
+    tvShow = get_object_or_404(TvShow, id=tvShowId)    
+    context = { 'tvShow': tvShow }
 
-    return HttpResponse(template.render(context,request))
+    return render(request, 'tvshows/details.html', context)
