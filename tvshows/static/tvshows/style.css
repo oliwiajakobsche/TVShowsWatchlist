@@ -1,11 +1,72 @@
+body {
+    background: white url('https://i.pinimg.com/originals/c8/65/87/c865872c565a9ccc3dec69b67044c9df.jpg');
+}
+
+body > .container {
+    font-family: ui-rounded;
+    padding-bottom: 2em;
+    background-color: white;
+}
+
+main {
+    background-color: #f7f4f4;
+}
+
+footer a {
+    color: white;
+}
+
 .navbar-brand {
-    font-family: 'Black Ops One', cursive;
+    font-family: 'Monoton', cursive;
 }
 
-.navbar {
-    border-radius: 0;
+.btn-primary {
+    color: #fff;
+    background-color: #bc0714;
+    border-color: #bb1717;
 }
 
-.glyphicon {
-    margin-right: 5px;
+.extra-pad-top {
+    padding-top: 1em;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+.accordion-item:last-of-type .accordion-collapse {
+    border-bottom-width: 0;
+ }
+
+.accordion-button:not(.collapsed) {
+    color: black;
+    background-color: white;
+}
+
+#tvShowsTitle {
+font-family: 'Monoton';
+    color: red;
+    font-size: 3em;
+}
+
+#tvShowTitleInDetails {
+    color: #ef5959;
+    font-weight: bold;
+}
+
+#mainTitleInfo {
+    padding-top: 3rem!important;
+    padding-bottom: 0rem!important;
+}
+
+#mainTitleInfo .lead {
+    font-style: italic;
+}
+
+@media only screen and (min-width : 768px) {
+    #tvShowInfoInDetails {
+        border-right-color: #b91e1e;
+        border-right-width: medium;
+        border-right-style: dotted;
+    }
 }

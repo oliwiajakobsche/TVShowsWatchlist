@@ -1,39 +1,119 @@
-<div>    
-    <h1> {{ tvShow.title }} </h1>
-    <img src = "{{ tvShow.poster }}">
-    <p>{{ tvShow.genre }}</p>
-    <p>{{ tvShow.productionCountry }}</p>
-    <p>{{ tvShow.description }}</p>
-</div>
+{% extends 'tvshows/base.html' %}
 
-<div>
-    {% if tvShow %}
-            {% for season in tvShow.season_set.all %}               
-                    <h4>Season {{ season.number }}</h4>
-                     {% if season.episode_set.all %}
-                    <table>
+{% block title %} {{ tvShow.title }} - information{% endblock %}
+{% block mainSectionHeader %} <h1> Details of <span id="tvShowTitleInDetails"> {{ tvShow.title }} </span> series
+</h1> {% endblock %}
+{% block mainSectionContent %} Find new amazing show to binge-watch today. {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row" style="padding-top: 1em">
+
+        <!-- Tv show basic information -->
+        <div id="tvShowInfoInDetails" class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h1> {{ tvShow.title }} </h1></li>
+
+                        <li class="list-group-item"><a href="{% url 'tvshows:details' tvShow.id %}">
+                            {% if tvShow.poster %}
+                            <img src="{{ tvShow.poster }}" class="img-responsive" style="width: 100%">
+                            {% else %}
+                            <h3>No image to display</h3>
+                            {% endif %}
+                        </a></li>
+
+                        <li class="list-group-item"><strong>Production country:</strong> {{ tvShow.productionCountry }}
+                        </li>
+                        <li class="list-group-item"><strong>Genre:</strong><small>{{ tvShow.genre }}</small></li>
+                        <li class="list-group-item"><strong>Description:</strong> {{ tvShow.description }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Seasons and episodes -->
+        <div class="col-sm-8 col-md-9">
+
+
+            <div class="panel panel-default extra-pad-top">
+                <div class="panel-body">
+
+                    {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    {% for season in tvShow.season_set.all %}
+                    <h4 style="color: #d21212; font-weight: 600;">Season {{ season.number }}</h4>
+                    {% if season.episode_set.all %}
+                    <table class="table">
                         <thead>
-                            <tr>
-                                <th>Nr</th>
-                                <th>Title</th>
-                                <th>Duration</th>
-                                <th>Released</th>
-                            </tr>
+                        <tr>
+                            <th>Episode nr</th>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Released</th>
+                            <th>Play</th>
+                            <th>Delete</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {% for episode in season.episode_set.all %}
-                            <tr>
-                                <td>{{ season.number }}</td>
-                                <td>{{ episode.title }}</td>
-                                <td>{{ episode.duration }}</td>
-                                <td>{{ episode.releaseDate }}</td>
-                            </tr>
-                            {% endfor%}                    
+                        {% for episode in season.episode_set.all %}
+                        <tr>
+                            <td>{{ episode.number }}</td>
+                            <td>
+                                <div class="accordion accordion-flush" id="accordionFlushExample{{episode.id}}">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne{{episode.id}}">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#flush-collapseOne{{episode.id}}"
+                                                    aria-expanded="false"
+                                                    aria-controls="flush-collapseOne{{episode.id}}">
+                                                {{ episode.title }}
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne{{episode.id}}" class="accordion-collapse collapse"
+                                             aria-labelledby="flush-headingOne{{episode.id}}"
+                                             data-bs-parent="#accordionFlushExample{{episode.id}}">
+                                            <div class="accordion-body"> {{ episode.description }}
+                                                body.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ episode.duration }}</td>
+                            <td>{{ episode.releaseDate }}</td>
+                            <td>
+                                <button type="button" class="btn btn-dark btn-sm">
+                                    Watch trailer
+                                </button>
+                            </td>
+                            <td>
+                                <form action="#" method="post" style="display: inline;">
+                                    <input type="hidden" name="episode_id" value="{{ episode.id }}"/>
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
                         </tbody>
-                    <table>
+                    </table>
+                    {% else %}
+                    <p>No episodes added yet.</p>
                     {% endif %}
-            {% endfor %}
-    {% else %}
-        <p>Sorry, it seems that our database with tv shows is empty.</p>
-    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+{% endblock %}

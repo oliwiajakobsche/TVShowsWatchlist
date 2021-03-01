@@ -1,0 +1,80 @@
+<!doctype html>
+<head>
+    {% load static %}
+    <meta charset="utf/8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>{% block siteTitle %} {% endblock %}</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+    <script crossorigin="anonymous" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="{% static 'tvshows/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'tvshows:index' %}">
+                <img alt="" class="d-inline-block align-top" height="24" src="{% static 'tvshows/images/logo.png' %}"
+                     width="30">
+                TvShow Watchlist
+            </a>
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a aria-current="{% url 'tvshows:index' %}" class="nav-link active" href="{% url 'tvshows:index' %}">Tv Shows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Add new Tv Show</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input aria-label="Search" class="form-control me-2" placeholder="search for tv show..."
+                           type="search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <main>
+            <section id="mainTitleInfo" class="py-5 text-center container">
+                <div class="row py-lg-2">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        {% block mainSectionHeader %} {% endblock %}
+                        <p class="lead text-muted">{% block mainSectionContent %} {% endblock %}</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="row">
+            {% block content %} {% endblock %}
+    </div>
+</div>
+
+<footer class="text-muted py-4 bg-dark">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#" style="nav-link">Back to top</a>
+    </p>
+    <p class="mb-1"><strong>Tv Show Watchlist ©</strong> Projekt na Systemy Zarządzania Treścią, Oliwia Jakobsce indeks 106545</p>
+  </div>
+</footer>
+<script crossorigin="anonymous" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
