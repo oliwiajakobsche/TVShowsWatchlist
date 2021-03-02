@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 class TvShow(models.Model):
     title = models.CharField(max_length=100)
@@ -7,6 +7,9 @@ class TvShow(models.Model):
     poster = models.CharField(max_length=1000)
     description = models.CharField(max_length=2500)
     productionCountry = models.CharField(max_length=40)
+
+    def get_absolute_url(self):
+        return reverse('tvshows:details', kwargs={'tvShowId': self.id})
 
     def __str__(self):
         return "[" + str(self.id) + "] " + self.title + " (" + self.productionCountry + ") - " + self.genre + "\n" + self.description[0:100] + "(...)"
@@ -28,5 +31,5 @@ class Episode(models.Model):
     duration = models.DurationField()
     releaseDate = models.DateField()
 
-    def __str__(self):        
+    def __str__(self):
         return self.season.tvShow.title + " [S" + str(self.season.number) + "E" + str(self.number) + "] [duration: " + str(self.duration) + "] released: " + str(self.releaseDate)

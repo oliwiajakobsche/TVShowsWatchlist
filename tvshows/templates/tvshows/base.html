@@ -34,7 +34,7 @@
                         <a aria-current="{% url 'tvshows:index' %}" class="nav-link active" href="{% url 'tvshows:index' %}">Tv Shows</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add new Tv Show</a>
+                        <a class="nav-link" href="{% url 'tvshows:tvshow-add' %}">Add new TvShow</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -49,7 +49,7 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row ">
         <main>
             <section id="mainTitleInfo" class="py-5 text-center container">
                 <div class="row py-lg-2">
@@ -61,7 +61,7 @@
             </section>
         </main>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-center">
             {% block content %} {% endblock %}
     </div>
 </div>

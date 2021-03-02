@@ -39,7 +39,24 @@
         <!-- Seasons and episodes -->
         <div class="col-sm-8 col-md-9">
 
+            <!-- Options Delete/Edit -->
+            <form action="{% url 'tvshows:tvshow-update' tvShow.id %}" method="" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="tvshow_id" value="{{ tvShow.id }}"/>
+                <button type="submit" class="btn btn-default btn-sm">
+                    Edit show
+                </button>
+            </form>
 
+            <form action="{% url 'tvshows:tvshow-delete' tvShow.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="tvshow_id" value="{{ tvShow.id }}"/>
+                <button type="submit" class="btn btn-default btn-sm">
+                    Delete show
+                </button>
+            </form>
+
+            <!-- Listing seasons and episodes -->
             <div class="panel panel-default extra-pad-top">
                 <div class="panel-body">
 

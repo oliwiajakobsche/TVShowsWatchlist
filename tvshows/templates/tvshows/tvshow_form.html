@@ -1,0 +1,30 @@
+{% extends 'tvshows/base.html' %}
+
+{% block title %} {{ tvShow.title }} - information{% endblock %}
+{% block mainSectionHeader %} <h1> Add a new <span id="tvShowTitleInDetails"> tv show </span> series </h1> {% endblock %}
+{% block mainSectionContent %}  {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center" style="padding-top: 1em ">
+        <div class="col-sm-12 col-md-7">
+             <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <form class="form-horizontal" action="" method="post" >
+                        {% csrf_token %}
+                        {% include 'tvshows/form-template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
