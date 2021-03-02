@@ -28,13 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My account</a>
+                        <a aria-current="{% url 'tvshows:index' %}" class="nav-link active" href="{% url 'tvshows:index' %}">Explore</a>
                     </li>
                     <li class="nav-item">
-                        <a aria-current="{% url 'tvshows:index' %}" class="nav-link active" href="{% url 'tvshows:index' %}">Tv Shows</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tvshows:tvshow-add' %}">Add new TvShow</a>
+                        <a class="nav-link" href="{% url 'tvshows:tvshow-add' %}">Add new show</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -66,7 +63,7 @@
     </div>
 </div>
 
-<footer class="text-muted py-4 bg-dark">
+<footer class="text-muted py-3 bg-dark footer">
   <div class="container">
     <p class="float-end mb-1">
       <a href="#" style="nav-link">Back to top</a>

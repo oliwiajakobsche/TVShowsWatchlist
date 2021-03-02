@@ -1,7 +1,7 @@
 {% extends 'tvshows/base.html' %}
 
 {% block title %} {{ tvShow.title }} - information{% endblock %}
-{% block mainSectionHeader %} <h1> Add or edit a <span id="tvShowTitleInDetails"> tv show </span> series
+{% block mainSectionHeader %} <h1> Add or edit an <span id="tvShowTitleInDetails"> episode </span> now
 </h1> {% endblock %}
 {% block mainSectionContent %}  {% endblock %}
 
@@ -16,7 +16,7 @@
                         {% include 'tvshows/form-template.html' %}
                         <div>
                             <div class="mb3 d-flex justify-content-center w-100">
-                                <button type="submit" class="btn btn-red w-75">Submit</button>
+                                <button type="submit" class="btn btn-primary w-75">Submit</button>
                             </div>
                         </div>
                     </form>

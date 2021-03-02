@@ -8,6 +8,14 @@ body > .container {
     background-color: white;
 }
 
+
+body > .container {
+  min-height: calc(100vh - 90px);
+}
+.footer {
+  height: 70px;
+}
+
 main {
     background-color: #f7f4f4;
 }
@@ -20,7 +28,7 @@ footer a {
     font-family: 'Monoton', cursive;
 }
 
-.btn-primary {
+.btn-red {
     color: #fff;
     background-color: #bc0714;
     border-color: #bb1717;
@@ -88,3 +96,12 @@ input {
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+label {
+    font-weight: bold;
+}
+
+.season-header span {
+    font-size: 0.5em;
+}
+

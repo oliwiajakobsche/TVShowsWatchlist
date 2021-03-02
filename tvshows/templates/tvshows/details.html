@@ -39,22 +39,29 @@
         <!-- Seasons and episodes -->
         <div class="col-sm-8 col-md-9">
 
-            <!-- Options Delete/Edit -->
-            <form action="{% url 'tvshows:tvshow-update' tvShow.id %}" method="" style="display:inline;">
+            <!-- DELETE TV SHOW -->
+            <form action="{% url 'tvshows:tvshow-delete' tvShow.id %}" method="post" style="display:inline; float: right; margin-left: 2px; margin-right: 2px">
                 {% csrf_token %}
                 <input type="hidden" name="tvshow_id" value="{{ tvShow.id }}"/>
-                <button type="submit" class="btn btn-default btn-sm">
+                <button type="submit" class="btn btn-danger btn-sm">
+                    Delete show
+                </button>
+            </form>
+
+            <!-- UPDATE TV SHOW -->
+            <form action="{% url 'tvshows:tvshow-update' tvShow.id %}" method="" style="display:inline; float: right; margin-left: 2px; margin-right: 2px">
+                {% csrf_token %}
+                <input type="hidden" name="tvshow_id" value="{{ tvShow.id }}"/>
+                <button type="submit" class="btn btn-primary btn-sm">
                     Edit show
                 </button>
             </form>
 
-            <form action="{% url 'tvshows:tvshow-delete' tvShow.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <input type="hidden" name="tvshow_id" value="{{ tvShow.id }}"/>
-                <button type="submit" class="btn btn-default btn-sm">
-                    Delete show
-                </button>
-            </form>
+            <!-- ADD NEW EPISODE -->
+            <a href="{% url 'tvshows:season-add' %}" class="btn btn-success btn-sm" style="float: right; margin-left: 2px; margin-right: 2px">Add new season</a>
+
+            <!-- ADD NEW EPISODE -->
+            <a href="{% url 'tvshows:episode-add' %}" class="btn btn-success btn-sm" style="float: right; margin-left: 2px; margin-right: 2px">Add new episode</a>
 
             <!-- Listing seasons and episodes -->
             <div class="panel panel-default extra-pad-top">
@@ -65,17 +72,33 @@
                     {% endif %}
 
                     {% for season in tvShow.season_set.all %}
-                    <h4 style="color: #d21212; font-weight: 600;">Season {{ season.number }}</h4>
+                    <h4 class="season-header" style="color: #d21212; font-weight: 600;">Season {{ season.number }}
+                             <!-- EDIT EPISODE -->
+                                 <form action="{% url 'tvshows:season-update' season.id %}" method="" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="season_id" value="{{ episode.id }}"/>
+                                    <button type="submit" class="btn btn-link btn-sm">
+                                        Edit
+                                    </button>
+                                </form>
+                                <!-- DELETE EPISODE -->
+                                <form action="{% url 'tvshows:season-delete' season.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="season_id" value="{{ episode.id }}"/>
+                                    <button type="submit" class="btn btn-link btn-sm">
+                                        Delete
+                                    </button>
+                                </form>
+                    </h4>
                     {% if season.episode_set.all %}
                     <table class="table">
                         <thead>
                         <tr>
                             <th>Episode nr</th>
-                            <th>Title</th>
+                            <th class="w-50">Title</th>
                             <th>Duration</th>
                             <th>Released</th>
-                            <th>Play</th>
-                            <th>Delete</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -106,15 +129,22 @@
                             </td>
                             <td>{{ episode.duration }}</td>
                             <td>{{ episode.releaseDate }}</td>
-                            <td>
-                                <button type="button" class="btn btn-dark btn-sm">
-                                    Watch trailer
-                                </button>
-                            </td>
-                            <td>
-                                <form action="#" method="post" style="display: inline;">
+                            <td class="float: right">
+
+                                    <a href="#" class="btn btn-primary btn-sm">Watch</a>
+                                <!-- EDIT EPISODE -->
+                                 <form action="{% url 'tvshows:episode-update' episode.id %}" method="" style="display:inline;">
+                                    {% csrf_token %}
                                     <input type="hidden" name="episode_id" value="{{ episode.id }}"/>
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="submit" class="btn btn-dark btn-sm">
+                                        Edit
+                                    </button>
+                                </form>
+                                <!-- DELETE EPISODE -->
+                                <form action="{% url 'tvshows:episode-delete' episode.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="episode_id" value="{{ episode.id }}"/>
+                                    <button type="submit" class="btn btn-dark btn-sm">
                                         Delete
                                     </button>
                                 </form>
